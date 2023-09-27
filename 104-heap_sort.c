@@ -2,18 +2,18 @@
 
 /**
  * heap_sort - Sorts an array of integers in ascending order using the
- *             Heap sort algorithm (sift-down).
+ *			 Heap sort algorithm (sift-down).
  *
  * @array: The array to be sorted
  * @size: Number of elements in @array
  */
 void heap_sort(int *array, size_t size)
 {
-    if (array == NULL || size < 2)
-        return;
+	if (array == NULL || size < 2)
+		return;
 
-    build_heap(array, size);
-    heapify(array, size);
+	build_heap(array, size);
+	heapify(array, size);
 }
 
 /**
@@ -24,10 +24,10 @@ void heap_sort(int *array, size_t size)
  */
 void build_heap(int *array, size_t size)
 {
-    int i;
+	int i;
 
-    for (i = (size / 2) - 1; i >= 0; i--)
-        sift_down(array, size, i);
+	for (i = (size / 2) - 1; i >= 0; i--)
+		sift_down(array, size, i);
 }
 
 /**
@@ -39,22 +39,22 @@ void build_heap(int *array, size_t size)
  */
 void sift_down(int *array, size_t size, int index)
 {
-    int largest = index;
-    int left_child = (2 * index) + 1;
-    int right_child = (2 * index) + 2;
+	int largest = index;
+	int left_child = (2 * index) + 1;
+	int right_child = (2 * index) + 2;
 
-    if (left_child < (int)size && array[left_child] > array[largest])
-        largest = left_child;
+	if (left_child < (int)size && array[left_child] > array[largest])
+		largest = left_child;
 
-    if (right_child < (int)size && array[right_child] > array[largest])
-        largest = right_child;
+	if (right_child < (int)size && array[right_child] > array[largest])
+		largest = right_child;
 
-    if (largest != index)
-    {
-        swap(&array[index], &array[largest]);
-        print_array(array, size);
-        sift_down(array, size, largest);
-    }
+	if (largest != index)
+	{
+		swap(&array[index], &array[largest]);
+		print_array(array, size);
+		sift_down(array, size, largest);
+	}
 }
 
 /**
@@ -65,14 +65,14 @@ void sift_down(int *array, size_t size, int index)
  */
 void heapify(int *array, size_t size)
 {
-    int i;
+	int i;
 
-    for (i = size - 1; i >= 0; i--)
-    {
-        swap(&array[0], &array[i]);
-        print_array(array, size);
-        sift_down(array, i, 0);
-    }
+	for (i = size - 1; i >= 0; i--)
+	{
+		swap(&array[0], &array[i]);
+		print_array(array, size);
+		sift_down(array, i, 0);
+	}
 }
 
 /**
@@ -83,7 +83,7 @@ void heapify(int *array, size_t size)
  */
 void swap(int *a, int *b)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }

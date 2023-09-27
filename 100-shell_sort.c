@@ -2,41 +2,41 @@
 
 /**
  * shell_sort - Sorts an array of integers in ascending order using the Shell
- *              sort algorithm with the Knuth sequence.
+ *			  sort algorithm with the Knuth sequence.
  *
  * @array: The array to be sorted
  * @size: Number of elements in @array
  */
 void shell_sort(int *array, size_t size)
 {
-    size_t gap = 1, i, j;
-    int temp;
+	size_t gap = 1, i, j;
+	int temp;
 
-    if (array == NULL || size < 2)
-        return;
+	if (array == NULL || size < 2)
+		return;
 
-    while (gap < size / 3)
-        gap = gap * 3 + 1;
+	while (gap < size / 3)
+		gap = gap * 3 + 1;
 
-    while (gap > 0)
-    {
-        for (i = gap; i < size; i++)
-        {
-            temp = array[i];
-            j = i;
+	while (gap > 0)
+	{
+		for (i = gap; i < size; i++)
+		{
+			temp = array[i];
+			j = i;
 
-            while (j >= gap && array[j - gap] > temp)
-            {
-                array[j] = array[j - gap];
-                j -= gap;
-            }
+			while (j >= gap && array[j - gap] > temp)
+			{
+				array[j] = array[j - gap];
+				j -= gap;
+			}
 
-            array[j] = temp;
-        }
+			array[j] = temp;
+		}
 
-        gap = (gap - 1) / 3;
+		gap = (gap - 1) / 3;
 
-        if (gap > 0)
-            print_array(array, size);
-    }
+		if (gap > 0)
+			print_array(array, size);
+	}
 }
