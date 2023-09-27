@@ -1,5 +1,16 @@
 #include "sort.h"
 
+void quick_helper(int *array, int low, int high, size_t size)
+{
+	int pivot;
+
+	if (low < high)
+	{
+		pivot = lomuto_partition(array, low, high, size);
+		quick_helper(array, low, pivot - 1, size);
+		quick_helper(array, pivot + 1, high, size);
+	}
+}
 /**
  * quick_sort - Sorts an array of integers in ascending order using the Quick
  *			  sort algorithm (Lomuto partition scheme).
@@ -12,28 +23,18 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 		return;
 
-	_quick_sort(array, 0, size - 1, size);
+	quick_helper(array, 0, size - 1, size);
 }
 
 /**
- * _quick_sort - Helper function for quick_sort
+ * quick_helper - Helper function for quick_sort
  *
  * @array: The array to be sorted
  * @low: Starting index of the partition
  * @high: Ending index of the partition
  * @size: Number of elements in @array
  */
-void _quick_sort(int *array, int low, int high, size_t size)
-{
-	int pivot;
 
-	if (low < high)
-	{
-		pivot = lomuto_partition(array, low, high, size);
-		_quick_sort(array, low, pivot - 1, size);
-		_quick_sort(array, pivot + 1, high, size);
-	}
-}
 
 /**
  * lomuto_partition - Lomuto partition scheme for Quick sort
